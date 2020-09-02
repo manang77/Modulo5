@@ -56,9 +56,6 @@ if(itemIndex >= 0) {
     console.log("No existe ningun producto en el carrito con id " + idDelete);
 }
 
-// function searchItem(id, products) {
-// }
-
 console.log("============= CONTENIDO CARRITO ACTUAL TRAS OPERACION ELIMINACION =============");
 for (cartItem of carrito) { 
     imprimirItem(cartItem);
