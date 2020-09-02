@@ -33,6 +33,19 @@ for (cartItem of carrito) {
 console.log("*******************************************************************************")
 console.log("******* EJERCICIO 2: ELIMINAR UN PRODUCTO DEL CARRITO DE LA COMPRA ************")
 console.log("*******************************************************************************")
+
+let searchItem = (id, products) => {
+    let itemFound = false;
+    let itemIndex = -1;
+    for (j = 0; j < products.length && !itemFound; j++) {
+        if (products[j].id == id) {
+            itemFound = true;
+            itemIndex = j;
+        } 
+    }
+    return itemIndex;
+}
+
 let idDelete = window.prompt("Introduzca el ID del item a eliminar del carrito");
 let itemIndex = searchItem(idDelete, carrito);
 
@@ -43,19 +56,8 @@ if(itemIndex >= 0) {
     console.log("No existe ningun producto en el carrito con id " + idDelete);
 }
 
-function searchItem(id, products) {
-    let itemFound = false;
-    let itemIndex = -1;
-
-    for (j = 0; j < products.length && !itemFound; j++) {
-        if (products[j].id == id) {
-            itemFound = true;
-            itemIndex = j;
-        } 
-    }
-
-    return itemIndex;
-}
+// function searchItem(id, products) {
+// }
 
 console.log("============= CONTENIDO CARRITO ACTUAL TRAS OPERACION ELIMINACION =============");
 for (cartItem of carrito) { 
@@ -144,6 +146,13 @@ body.appendChild(cartList);
 console.log("*******************************************************************************")
 console.log("******* EJERCICIO 7: APLICAR 5% DE DESCUENTO SI LA COMPRA ES MAYOR DE 100€ ****")
 console.log("*******************************************************************************")
+let cartAmount = cartItems => {
+    let cartPrice = 0;
+    for (item of cartItems)
+        cartPrice += item.price * item.count;
+    return cartPrice;
+}
+
 if (cartAmount(carrito) > 100) {
     applyDiscount(carrito);
     console.log("SE HA APLICADO UN DESCUENTO DEL 5%");
@@ -152,13 +161,6 @@ if (cartAmount(carrito) > 100) {
 console.log("============= CONTENIDO CARRITO ACTUAL TRAS OPERACION =============");
 for (cartItem of carrito) { 
     imprimirItem(cartItem);
-}
-
-function cartAmount (cartItems) {
-    let cartPrice = 0;
-    for (item of cartItems)
-        cartPrice += item.price * item.count;
-    return cartPrice;
 }
 
 function applyDiscount(cartItems) {
